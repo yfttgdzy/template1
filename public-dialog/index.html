@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dialog</title>
+  <link rel="stylesheet" href="./css/dialog.css">
+</head>
+<body>
+  <!-- <div class="dialog-box">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <button class="close-dialog"><span></span></button>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-tip-box">
+          <img src="./images/warning-icon.png" alt="" class="dialog-icon">
+          <span class="dialog-tip">今晚打老虎今晚打老虎</span>
+        </div>
+        <h4 class="dialog-confirm-tip">确定今天打老虎？</h4>
+      </div>
+      <div class="dialog-footer">
+        <a href="javacript:void(0)" class="btn-style btn-blue btn-ok">确定</a>
+        <a href="javacript:void(0)" class="btn-style btn-white btn-cancel">确定</a>
+      </div>
+    </div>
+  </div> -->
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="./js/dialog.js"></script>
+  <script>
+    var dialog = Dialog({
+      type: "alert",
+      tip: "今晚打老虎今晚打老虎",
+      icon: false,
+      // confirmTip: "",
+      okVal: "确定",
+      okClass: "btn-green",
+      ok: function() {
+        console.log("确定打老虎");
+      },
+      cancelVal: "否",
+      cancelClass: "btn-white",
+      cancel: function () {
+        console.log("取消打老虎");
+      },
+      close: function () {
+        console.log("关闭窗口，不管了");
+      }
+    })
+  </script>
+</body>
+</html>

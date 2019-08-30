@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WXML解析</title>
+  <style>
+    *{box-sizing: border-box;}
+    body{margin:20px auto;width: 1200px;}
+  </style>
+</head>
+<body>
+  <h3>渲染层和逻辑层</h3>
+  <img src="../images/wxml/webview-jscore.png" alt="">
+  <h2>WXML</h2>
+  <h3>数据绑定</h3>
+  <p> &lt;view&gt;{{message}}&lt;/view&gt; </p>
+  <h3>组件数据绑定</h3>
+  <p> &lt;view id="item-{{id}}"&gt;&lt;/view&gt; </p>
+  <h3>控制属性</h3>
+  <p> &lt;view wx-if="{{condition}}"&gt;&lt;/view&gt; </p>
+  <h3>关键词</h3>
+  <p> &lt;checkbox checked="{{false}}"&gt;&lt;/checkbox&gt; </p>
+  
+  <h3>运算</h3>
+  <h4>三元运算</h4>
+  <p> &lt;view hidden="{{flag ? true : false}}"&gt;Hidden&lt;/view&gt; </p>
+  <h4>算数运算</h4>
+  <p> &lt;view &gt;{{a+b}} + {{c}} + d&lt;/view&gt; </p>
+  <h4>逻辑判断</h4>
+  <p> &lt;view wx-if="{{length > 5}}"&gt;&lt;/view&gt; </p>
+  <h4>字符串运算</h4>
+  <p> &lt;view&gt;{{"hello" + name}}&lt;/view&gt; </p>
+  <h4>数据路径运算</h4>
+  <p> &lt;view&gt;{{object.key}}{{array[0]}}&lt;/view&gt; </p>
+
+  <h3>组合</h3>
+  <h4>数组</h4>
+  <p> &lt;view wx-for="{{[zero, 1, 2, 3, 4]}}"&gt;{{item}}&lt;/view&gt; </p>
+  <h4>对象</h4>
+  <p> &lt;template is="objectCombine" data="{{for: a, bar: b}}"&gt;&lt;/template&gt; </p>
+  <p>也可以用扩展运算符 ... 来将一个对象展开</p>
+  <p> &lt;template is="objectCombine" data="{{...obj1, ...obj2, e: 5}}"&gt;&lt;/template&gt; </p>
+  <p>如果对象的 key 和 value 相同，也可以间接地表达。</p>
+  <p> &lt;template is="objectCombine" data="{{foo, bar}}"&gt;&lt;/template&gt; </p>
+  <p>注意：上述方式可以随意组合，但是如有存在变量名相同的情况，后边的会覆盖前面</p>
+  <p>注意： 花括号和引号之间如果有空格，将最终被解析成为字符串</p>
+
+  <h3>列表渲染wx:for</h3>
+  <p>默认数组的当前项的下标变量名默认为 index，数组当前项的变量名默认为 item</p>
+  <p>&lt;view wx:for="{{array}}"&gt;{{item}}&lt;/view&gt;</p>
+  <p>使用 wx:for-item 可以指定数组当前元素的变量名，使用 wx:for-index 可以指定数组当前下标的变量名：</p>
+  <p>&lt;view wx:for="{{array}}" wx:for-index="idx" wx-for-item="itemName" &gt;{{idx}}: {{itemName.message}}&lt;/view&gt;</p>
+  <p>wx:for 也可以嵌套，下边是一个九九乘法表</p>
+  <pre>
+      &lt;view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i"&gt;
+        &lt;view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="j"&gt;
+          &lt;view wx:if="{{i <= j}}"&gt;
+            {{i}} * {{j}} = {{i * j}}
+          &lt;/view&gt;
+        &lt;/view&gt;
+      &lt;/view&gt;
+  </pre>
+  <h4>block wx:for</h4>
+  <pre>
+    <block wx:for="{{[1, 2, 3]}}">
+      <view> {{index}}: </view>
+      <view> {{item}} </view>
+    </block>
+  </pre>
+
+  <h3>条件渲染wx:if</h3>
+  <p>在框架中，使用 wx:if="" 来判断是否需要渲染该代码块：</p>
+  <p>&lt;view wx:if="{{condition}}"&gt;condition&lt;/view&gt;</p>
+  <p>也可以用 wx:elif 和 wx:else 来添加一个 else 块：</p>
+  <p>&lt;view wx:if="{{view == 'WEBVIEW'}}"&gt;WEBVIEW&lt;/view&gt;</p>
+  <p>&lt;view wx:elif="{{view == 'APP'}}"&gt;APP&lt;/view&gt;</p>
+  <p>&lt;view wx:else="{{view == 'MINA'}}"&gt;MINA&lt;/view&gt;</p>
+  <h4>block wx:if</h4>
+  <pre>
+    &lt;block wx:if="{{true}}"&gt;
+      &lt;view&gt; view1 &lt;/view&gt;
+      &lt;view&gt; view2 &lt;/view&gt;
+    &lt;/block&gt;
+  </pre>
+
+  <h3>模板</h3>
+  <p>WXML提供模板（template），可以在模板中定义代码片段，然后在不同的地方调用。</p>
+  <h4>定义模板</h4>
+  <p>使用 name 属性，作为模板的名字。然后在&lt;template/&gt;内定义代码片段，</p>
+  <pre>
+    &lt;template name="msgItem"&gt;
+      &lt;view&gt;
+        &lt;text&gt; {{index}}: {{msg}} &lt;/text&gt;
+        &lt;text&gt; Time: {{time}} &lt;/text&gt;
+      &lt;/view&gt;
+    &lt;/template&gt;
+  </pre>
+  <h4>使用模板</h4>
+  <p>使用 is 属性，声明需要的使用的模板，然后将模板所需要的 data 传入</p>
+  <p>&lt;template is="msgItem" data="{{...item}}"/&gt;</p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WXS解析</title>
+</head>
+<body>
+  <ol>
+    <li>WXS 不依赖于运行时的基础库版本，可以在所有版本的小程序中运行。</li>
+    <li>WXS 与 JavaScript 是不同的语言，有自己的语法，并不和 JavaScript 一致。</li>
+    <li>WXS 的运行环境和其他 JavaScript 代码是隔离的，WXS 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的API。</li>
+    <li>WXS 函数不能作为组件的事件回调。</li>
+    <li>由于运行环境的差异，在 iOS 设备上小程序内的 WXS 会比 JavaScript 代码快 2 ~ 20 倍。在 android 设备上二者运行效率无差异。</li>
+  </ol>
+  <p>要完整了解 WXS 语法，请参考<a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/">WXS 语法参考</a>。</p>
+</body>
+</html>

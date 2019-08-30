@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, minimum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./font-awesome/css/font-awesome.css">
+  <title>boxDrag</title>
+  <style>
+    .box{
+      position: relative;
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: row; /* 主轴方向 row水平左, row-reverse水平右, column垂直上, column-reverse垂直下 */
+      flex-wrap: nowrap;/* 如何换行 nowrap不换行, wrap从上往下, wrap-reverse从下往上*/
+      flex-flow: row nowrap;/* 与上面两个相等的简写方式 */
+      justify-content: center;/* 主轴对齐方式 flex-start起点对齐, flex-end终点对齐, center居中对齐, space-between两端对齐, space-around间隔对齐 */
+      align-items: center;/* 交叉轴对齐方式 flex-start起点对齐, flex-end终点对齐, center居中对齐, baseline首行文字基线对齐, stretch默认,未设高度或auto,占整个容器 */
+      align-content: flex-start;/* 交叉轴多轴对齐方式 flex-start起点对齐, flex-end终点对齐, center居中对齐, space-between两端对齐, space-around间隔对齐 stretch默认,未设高度或auto,占整个容器 */
+      margin: auto;
+      width: 600px;
+      height: 400px;
+      background-color: #35ccf1;
+    }
+    .pic-item{
+      display: none;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      /* order: 1;排列顺序 */
+      /* flex-grow: 0;放大比例 */
+      /* flex-shrink: 1;缩小比例 */
+      /* flex-basis: auto;项目占据空间 */
+      /* flex: 0 1 auto;上面2,3,4,缩写 */
+      /* align-self: auto, flex-start, flex-end, center, baseline, stretch;允许单个项目有与其他项目不一样的对齐方式 */
+    }
+    .pic-item img{
+      position: relative;
+      top:50%;
+      left: 50%;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      transform: translate(-50%, -50%);
+      transition: transform .5s linear;
+      cursor: hand;
+    }
+    .pic-item.active{
+      display: block;
+      opacity: 1;
+      overflow: hidden;
+    }
+    .prev{
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      top: 175px;
+      left: 20%;
+      z-index: 10;
+      text-align: center;
+      background-color: #000;
+      color :#fff;
+      text-decoration: none;
+    }
+    .next{
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      top: 175px;
+      right: 20%;
+      z-index: 10;
+      text-align: center;
+      background-color: #000;
+      color :#fff;
+      text-decoration: none;
+    }
+    .btn-list{
+      display: none;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      background-color: rgba(0, 0, 0, .8);
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    .btn-list button {
+      padding: 0 5px;
+      border:none;
+      box-shadow: none;
+      color: #fff;
+      background-color: transparent;
+      outline: none !important;
+      cursor: pointer;
+    }
+    .box:hover .btn-list {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <a href="javascript:void(0)" class="prev">prev</a>
+  <a href="javascript:void(0)" class="next">next</a>
+  <div class="box">
+    <div class="pic-item active">
+      <img src="./images/1.jpg" draggable="true">
+    </div>
+    <div class="pic-item">
+      <img src="./images/2.jpg" draggable="true">
+    </div>
+    <div class="pic-item">
+      <img src="./images/3.jpg" draggable="true">
+    </div>
+    <div class="btn-list">
+      <button class="rRotate"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+      <button class="lRotate"><i class="fa fa-undo" aria-hidden="true"></i></button>
+      <button class="zoomS"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
+      <button class="zoomL"><i class="fa fa-search-plus" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <script src="./js/picDrag.js"></script>
+  <script>
+    var BoxDrag = new BoxDrag ()
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>API解析</title>
+  <style>
+    *{box-sizing: border-box;padding: 0;}
+    body{margin:20px auto;width: 1200px;}
+  </style>
+</head>
+<body>
+  <h3>事件监听API</h3>
+  <p>我们约定，以 on 开头的 API 用来监听某个事件是否触发，如：wx.onSocketOpen，wx.onCompassChange 等。
+  <p>这类 API 接受一个回调函数作为参数，当事件触发时会调用这个回调函数，并将相关数据以参数形式传入。</p></p>
+  <pre>
+    wx.onCompassChange(function (res) {
+      console.log(res.direction)
+    })
+  </pre>
+  <h3>同步API</h3>
+  <p>我们约定，以 Sync 结尾的 API 都是同步 API， 如 wx.setStorageSync，wx.getSystemInfoSync 等。此外，也有一些其他的同步 API，如 wx.createWorker，wx.getBackgroundAudioManager 等，详情参见 API 文档中的说明。</p>
+  <p>同步 API 的执行结果可以通过函数返回值直接获取，如果执行出错会抛出异常。</p>
+  <pre>
+    try {
+      wx.setStorageSync('key', 'value')
+    } catch (e) {
+      console.error(e)
+    }
+  </pre>
+  <h3>同步API</h3>
+  <p>大多数 API 都是异步 API，如 wx.request，wx.login 等。这类 API 接口通常都接受一个 Object 类型的参数，这个参数都支持按需指定以下字段来接收接口调用结果：</p>
+  <pre>
+    try {
+      wx.setStorageSync('key', 'value')
+    } catch (e) {
+      console.error(e)
+    }
+  </pre>
+  <h4>Object 参数说明</h4>
+  <img src="../images/api/asyn-object.png" alt="">
+  <h4>回调函数的参数</h4>
+  <p>success，fail，complete 函数调用时会传入一个 Object 类型参数，包含以下字段</p>
+  <img src="" alt="">
+</body>
+</html>

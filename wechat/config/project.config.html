@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>project.config.json解析</title>
+  <style>
+    *{box-sizing: border-box;margin: 0;padding: 0;}
+    body{margin:20px auto;width: 1200px;}
+  </style>
+</head>
+<body>
+  <h3>项目配置文件</h3>
+  <img src="../images/project.config.json/project.config.png" alt="project.configAPI">
+  <h4>compileType有效值</h4>
+  <img src="../images/project.config.json/compileType.png" alt="">
+  <h4>setting设置</h4>
+  <img src="../images/project.config.json/setting.png" alt="">
+  <h5>babelSetting设置</h5>
+  <img src="../images/project.config.json/babelSetting.png" alt="">
+  <h4>scripts 中指定自定义预处理的命令</h4>
+  <img src="../images/project.config.json/scripts.png" alt="">
+  <h4>packOptions 用以配置项目在打包过程中的选项</h4>
+  <img src="../images/project.config.json/packOptions.ignore.png" alt="">
+  <img src="../images/project.config.json/packOption.template.png" alt="">
+  <p>其中，type 可以取的值为 folder、file、suffix、prefix、regexp2、glob2，分别对应文件夹、文件、后缀、前缀、正则表达式、Glob 规则。所有规则值都会自动忽略大小写。</p>
+  <p>注 1: value 字段的值若表示文件或文件夹路径，以小程序目录 (miniprogramRoot) 为根目录。</p>
+  <p>注 2: regexp、glob 仅 1.02.1809260 及以上版本工具支持。</p>
+  <h3>debugOptions</h3>
+  <p>debugOptions 用以配置在对项目代码进行调试时的选项。</p>
+  <img src="../images/project.config.json/debugOptions.png" alt="">
+  <p>目前可以指定 debugOptions.hidedInDevtools 字段，用以配置调试时于调试器 Sources 面板隐藏源代码的文件。</p>
+  <p>hidedInDevtools 的配置规则和 packOptions.ignore 是一致的。</p>
+  <br>
+  <p>可以在项目根目录使用 project.config.json 文件对项目进行配置。</p>
+  <p>属性有：miniprogramRoot,qcloudRoot,pluginRoot,compileType,setting,libVersion,appid,projectname,packOptions,debugOptions,scripts</p>
+  
+</body>
+</html>
